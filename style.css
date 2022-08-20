@@ -91,10 +91,15 @@ header{
 
 .small{
     color:var(--secondary-color);
+    background-color: var(--primary-color);
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
     font-weight: bold;
 } 
+
 #popularity{
     color:var(--primary-color);
     font-weight: bold;
     font-size: 25px;
 }
+

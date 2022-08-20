@@ -10,7 +10,9 @@ const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 const searchURL = BASE_URL + '/search/movie?' + API_KEY;
 
 const album =  document.getElementById('album')
-const staticBackdrop =  document.getElementById('staticBackdrop')
+const form =  document.getElementById('form')
+const search =  document.getElementById('search')
+
 
 getMovie(API_URL);
 
@@ -30,7 +32,7 @@ function tampilkanMovie(data){
                 const { title, poster_path, release_date, overview, vote_average, id } = movie;
                 const formListMovie = document.createElement('div');
                 formListMovie.classList.add('movie');
-                formListMovie.innerHTML =`
+                formListMovie.innerHTML = `
                 <div class="col-10 mt-3">
                 <div class="card box-shadow">
                     <img class="card-img-top" src="${poster_path ? IMG_URL + poster_path : "/ ujr5pztc1oitbe7ViMUOilFaJ7s.jpg"}" alt = "${title}" >
@@ -71,8 +73,8 @@ function tampilkanMovie(data){
                                 </div>
                             </div>
                         </div>
-
-                        <small class="small">${release_date}</small>
+                        <span class="small">${vote_average}</span>
+                        <span class="small">${release_date}</span>
                     </div>
                 </div>
                 </div >
@@ -83,4 +85,13 @@ function tampilkanMovie(data){
 
 }
 
+form.addEventListener('submit',(e) => {
+    e.preventDefault()
 
+    const searchValue = search.value;
+
+    if(searchValue ){
+        getMovie(searchURL+'&query='+searchValue)
+    }
+
+})

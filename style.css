@@ -1,0 +1,100 @@
+:root{
+    --primary-color:orange;
+    --secondary-color: #000431;
+    --focus-color: #ffffff;
+    --font-focus-color: black;
+}
+
+body{
+    background-color: var(--primary-color);
+    font-family: 'Poppins', sans-serif;
+    /* margin: 0; */
+}
+
+
+header{
+    padding:1rem;
+    display:flex;
+    justify-content: flex-end;
+    background-color: var(--secondary-color);
+}
+
+.search{
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    padding:0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    color: var(--font-focus-color);
+    font-family: inherit;
+}
+
+.search:focus{
+    outline:0;
+    background-color: var(--focus-color);
+}
+
+.search::placeholder{
+    color: #7378c5;
+}
+
+
+
+.pagination{
+    display:flex;
+    margin:10px 30px;
+    align-items: center;
+    justify-content: center;
+    color: black;
+}
+.page{
+    padding:20px;
+    cursor:pointer;
+}
+
+.page.disabled{
+    cursor:not-allowed;
+    color:grey;
+}
+
+.current{
+    padding: 10px 20px;
+    border-radius: 50%;
+    border: 5px solid orange;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.know-more{
+    background-color: orange;
+    color:white;
+    font-size: 16px;
+    font-weight: bold;
+    border:0;
+    border-radius: 50px;
+    padding: 10px 20px;
+    margin-top: 5px;
+}
+
+.title{
+    color: var(--secondary-color);
+    font-weight: bold;
+    font-size: 20px;
+    size-adjust: 10px;
+}
+
+#album{
+    background-color: #0e0b16; 
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.small{
+    color:var(--secondary-color);
+    font-weight: bold;
+} 
+#popularity{
+    color:var(--primary-color);
+    font-weight: bold;
+    font-size: 25px;
+}

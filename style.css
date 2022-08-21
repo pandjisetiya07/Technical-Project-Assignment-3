@@ -26,17 +26,19 @@ header{
     padding:0.5rem 2rem;
     border-radius: 50px;
     font-size: 1rem;
-    color: var(--font-focus-color);
     font-family: inherit;
+    color: var(--primary-color);
+    font-weight: bold;
 }
 
 .search:focus{
     outline:0;
     background-color: var(--focus-color);
+    color: var(--font-focus-color);
 }
 
 .search::placeholder{
-    color: #7378c5;
+    color: var(--primary-color);
 }
 
 

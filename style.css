@@ -5,24 +5,25 @@
     --font-focus-color: black;
 }
 
-body{
+/* body{
     background-color: var(--primary-color);
     font-family: 'Poppins', sans-serif;
-    /* margin: 0; */
-}
+    margin: 0; 
+} */
 
 
 header{
     padding:1rem;
     display:flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     background-color: var(--secondary-color);
 }
+
 
 .search{
     background-color: transparent;
     border: 2px solid var(--primary-color);
-    padding:0.5rem 1rem;
+    padding:0.5rem 2rem;
     border-radius: 50px;
     font-size: 1rem;
     color: var(--font-focus-color);
@@ -110,4 +111,10 @@ header{
 
 .container-fluid{
     background-color: #000000;
+    text-align: center;
+}
+
+.title-header{
+    color: var(--primary-color);
+    font-weight: bold;
 }

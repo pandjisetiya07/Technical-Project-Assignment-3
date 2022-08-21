@@ -18,7 +18,9 @@ getMovie(API_URL);
 
 function getMovie(url){ 
     lastUrl = url;
-    fetch(url).then(response => response.json()).then(data => {
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
         console.log(data)
         if(data.results.length !== 0){
             tampilkanMovie(data.results);
@@ -42,7 +44,7 @@ function getMovie(url){
             album.scrollIntoView({behavior : 'smooth'})
 
         }else{
-            album.innerHTML = `<h1 class="no-results"> Tidak Ditemukan </h1>`
+            album.innerHTML = `<h1 class="no-results" style="color: white;  text-align: center;"> Tidak Ditemukan </h1>`
         }
     })
 }
@@ -56,14 +58,14 @@ function tampilkanMovie(data){
                         <div class="card">
                             <img src="${poster_path ? IMG_URL + poster_path : "/ ujr5pztc1oitbe7ViMUOilFaJ7s.jpg"}" class="card-img-top" alt="${title}">
                             <div class="card-body">
-                            <h5 class="card-title">${title}</h5>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#staticBackdrop">
-                            Deskripsi Film
-                            </button>
-                            <span class="small">${vote_average}</span>
-                            <span class="small">${release_date}</span>
-                              
+                                <h5 class="card-title" style="font-weight: bold;">${title}</h5>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#staticBackdrop">
+                                    Deskripsi Film 
+                                </button>
+                                <span class="small">${vote_average}</span>
+                                <span class="small">${release_date}</span>
+                                
                             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
                                 data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
                                 aria-hidden="true">
@@ -74,8 +76,8 @@ function tampilkanMovie(data){
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
-                                        <div class="modal-body" >
-                                            <p class="card-text">${overview}</p>
+                                        <div class="modal-body " >
+                                            <p class="card-text ">${overview}</p>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
@@ -91,6 +93,8 @@ function tampilkanMovie(data){
         })
 
 }
+
+
 //fungsi search
 form.addEventListener('submit',(e) => {
     e.preventDefault()
@@ -99,6 +103,8 @@ form.addEventListener('submit',(e) => {
 
     if(searchValue ){
         getMovie(searchURL+'&query='+searchValue)
+    }else{
+        getMovie(API_URL);
     }
 
 })

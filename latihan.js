@@ -55,19 +55,18 @@ function tampilkanMovie(data){
                 const formListMovie = document.createElement('div');
                 formListMovie.classList.add('movie');
                 formListMovie.innerHTML = `
-                <div class="col-10 mt-3">
-                <div class="card box-shadow">
-                    <img class="card-img-top" src="${poster_path ? IMG_URL + poster_path : "/ ujr5pztc1oitbe7ViMUOilFaJ7s.jpg"}" alt = "${title}" >
-                <div class="card-body">
-                    <p class="title">${title}</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#staticBackdrop">
-                                Deskripsi Film
-                            </button>
-                        </div>
-                        
+                <div class="col-lg-3 col-md-4 col-sm-6 py-2">
+                    <div class="card">
+                        <img src="${poster_path ? IMG_URL + poster_path : "/ ujr5pztc1oitbe7ViMUOilFaJ7s.jpg"}" class="card-img-top" alt="${title}">
+                        <div class="card-body">
+                        <h5 class="card-title">${title}</h5>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop">
+                        Deskripsi Film
+                        </button>
+                        <span class="small">${vote_average}</span>
+                        <span class="small">${release_date}</span>
+                          
                         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
                             data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
                             aria-hidden="true">
@@ -88,13 +87,9 @@ function tampilkanMovie(data){
                                 </div>
                             </div>
                         </div>
-                        <span class="small">${vote_average}</span>
-                        <span class="small">${release_date}</span>
                     </div>
                 </div>
-                </div >
-            </div >
-
+            
 
 
             <div class="col-lg-3 col-md-4 col-sm-6 py-2">

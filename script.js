@@ -13,6 +13,8 @@ const album =  document.getElementById('album')
 const form =  document.getElementById('form')
 const search =  document.getElementById('search')
 
+
+
 let currentPage = 1;
 let nextPage = 2;
 let prevPage = 3;
@@ -22,12 +24,34 @@ let totalPages = 100;
 
 getMovie(API_URL);
 
-function getMovie(url){
-    fetch(url)
-    .then((response) => response.json())
-    .then(data => {
-        tampilkanMovie(data.results);
+function getMovie(url){ 
+    lastUrl = url;
+    fetch(url).then(response => response.json()).then(data => {
         console.log(data)
+        if(data.results.length !== 0){
+            tampilkanMovie(data.results);
+            currentPage = data.page;
+            nextPage = currentPage + 1;
+            prevPage = currentPage - 1;
+            totalPages = data.total_pages; 
+
+            current.innerText = currentPage;
+
+            if(currentPage <= 1){
+              prev.classList.add('disabled');
+              next.classList.remove('disabled')
+            }else if(currentPage>= totalPages){
+              prev.classList.remove('disabled');
+              next.classList.add('disabled')
+            }else{
+              prev.classList.remove('disabled');
+              next.classList.remove('disabled')
+            } 
+            album.scrollIntoView({behavior : 'smooth'})
+
+        }else{
+            album.innerHTML = `<h1 class="no-results"> Tidak Ditemukan </h1>`
+        }
     })
 }
 
@@ -35,7 +59,7 @@ function tampilkanMovie(data){
     album.innerHTML = '';
 
             data.forEach(movie => {
-                const { title, poster_path, release_date, overview, vote_average, id } = movie;
+                const {title, poster_path, vote_average, release_date, overview,  id} = movie;
                 const formListMovie = document.createElement('div');
                 formListMovie.classList.add('movie');
                 formListMovie.innerHTML = `
@@ -44,7 +68,7 @@ function tampilkanMovie(data){
                     <img class="card-img-top" src="${poster_path ? IMG_URL + poster_path : "/ ujr5pztc1oitbe7ViMUOilFaJ7s.jpg"}" alt = "${title}" >
                 <div class="card-body">
                     <p class="title">${title}</p>
-                    <div class="d-flex justify-content-between align-items-center ${id}">
+                    <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#staticBackdrop">
@@ -65,16 +89,9 @@ function tampilkanMovie(data){
                                     <div class="modal-body" >
                                         <p class="card-text">${overview}</p>
                                     </div>
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Rating Film</h5>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p class="card-text overview" id="vote_average">${vote_average}</p>
-                                    </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">Close</button>
-                                         <button type="button" class="btn btn-primary">Understood</button> 
                                     </div>
                                 </div>
                             </div>
@@ -90,7 +107,7 @@ function tampilkanMovie(data){
         })
 
 }
-
+//fungsi search
 form.addEventListener('submit',(e) => {
     e.preventDefault()
 
@@ -102,6 +119,7 @@ form.addEventListener('submit',(e) => {
 
 })
 
+//fungsi next & prev page
 prev.addEventListener('click', () => {
     if(prevPage > 0){
       pageCall(prevPage);
@@ -125,7 +143,7 @@ prev.addEventListener('click', () => {
       key[1] = page.toString();
       let a = key.join('=');
       queryParams[queryParams.length -1] = a;
-      let b = queryParams.join('&');
+       let b = queryParams.join('&');
       let url = urlSplit[0] +'?'+ b
       getMovie(url);
     }
